@@ -13,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -38,7 +40,7 @@ fun EshopaApp() {
         "shop" -> stringResource(R.string.shop)
         "wishlist" -> stringResource(R.string.wishlist)
         "cart" -> stringResource(R.string.cart)
-        "page" -> stringResource(R.string.product_details)
+        "page" -> stringResource(R.string.view_product)
         "purchase" -> stringResource(R.string.purchase_product)
         else -> stringResource(R.string.app_name)
     }
@@ -70,11 +72,18 @@ fun MainTopBar(
     navigationIcon: @Composable () -> Unit = { },
 ) {
     TopAppBar(
-        title = { Text(title) },
+        title = {
+            Text(
+                text = title,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
+            )
+        },
         navigationIcon = navigationIcon,
         actions = actions,
     )
 }
+
 /*TODO: remove the bottom bar */
 @Composable
 fun BottomNavBar(

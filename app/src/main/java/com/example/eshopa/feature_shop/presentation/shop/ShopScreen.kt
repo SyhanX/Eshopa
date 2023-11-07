@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.eshopa.common.data.AllProductsUiState
+import com.example.eshopa.common.data.ShopUiState
 import com.example.eshopa.common.presentation.ErrorScreen
 import com.example.eshopa.common.presentation.LoadingScreen
 import com.example.eshopa.common.presentation.util.NavHostDestinations
@@ -24,17 +24,17 @@ fun ShopScreen(
     shopViewModel: ShopViewModel,
     cartViewModel: CartViewModel,
     navController: NavHostController,
-    allProductsUiState: AllProductsUiState,
+    shopUiState: ShopUiState,
     retryAction: () -> Unit,
 ) {
-    when (allProductsUiState) {
-        is AllProductsUiState.Loading -> LoadingScreen()
-        is AllProductsUiState.Error -> ErrorScreen(retryAction)
-        is AllProductsUiState.Success -> ShopContent(
+    when (shopUiState) {
+        is ShopUiState.Loading -> LoadingScreen()
+        is ShopUiState.Error -> ErrorScreen(retryAction)
+        is ShopUiState.Success -> ShopContent(
             shopViewModel = shopViewModel,
             cartViewModel = cartViewModel,
             navController = navController,
-            allProductsUiState.products
+            shopUiState.products
         )
     }
 }

@@ -94,9 +94,8 @@ fun ProductCard(
     }
 }
 
-
 @Composable
-fun ProductImage(product: Product, modifier: Modifier = Modifier) {
+private fun ProductImage(product: Product, modifier: Modifier = Modifier) {
     AsyncImage(
         model = ImageRequest.Builder(context = LocalContext.current)
             .data(product.image)
@@ -113,10 +112,11 @@ fun ProductImage(product: Product, modifier: Modifier = Modifier) {
 private fun ProductInfo(product: Product) {
     Text(
         text = product.title,
-        fontSize = 14.sp,
+        fontSize = 16.sp,
         maxLines = 2,
         fontWeight = FontWeight.SemiBold,
         letterSpacing = 0.sp,
+        lineHeight = 18.sp,
         overflow = TextOverflow.Ellipsis,
         modifier = Modifier
             .wrapContentWidth()

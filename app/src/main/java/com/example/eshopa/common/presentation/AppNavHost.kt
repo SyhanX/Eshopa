@@ -31,13 +31,13 @@ fun AppNavHost(
                 shopViewModel = shopViewModel,
                 cartViewModel = cartViewModel,
                 navController = navController,
-                allProductsUiState = shopViewModel.allProductsUiState,
+                shopUiState = shopViewModel.shopUiState,
                 retryAction = shopViewModel::getAllProducts,
             )
         }
         composable(route = NavHostDestinations.ProductPageScreen.route) {
             DetailsScreen(
-                singleProductUiState = shopViewModel.singleProductUiState,
+                detailsUiState = shopViewModel.detailsUiState,
                 retryAction = { /*TODO*/}
             )
         }

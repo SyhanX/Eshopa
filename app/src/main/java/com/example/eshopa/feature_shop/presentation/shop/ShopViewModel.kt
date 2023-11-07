@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.eshopa.common.data.AllProductsUiState
-import com.example.eshopa.common.data.SingleProductUiState
+import com.example.eshopa.common.data.ShopUiState
+import com.example.eshopa.common.data.DetailsUiState
 import com.example.eshopa.feature_shop.data.repository.ProductRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -15,10 +15,10 @@ class ShopViewModel(
     private val productRepository: ProductRepository
 ) : ViewModel() {
 
-    var allProductsUiState: AllProductsUiState by mutableStateOf(AllProductsUiState.Loading)
+    var shopUiState: ShopUiState by mutableStateOf(ShopUiState.Loading)
         private set
 
-    var singleProductUiState: SingleProductUiState by mutableStateOf(SingleProductUiState.Loading)
+    var detailsUiState: DetailsUiState by mutableStateOf(DetailsUiState.Loading)
         private set
 
     init {
@@ -28,26 +28,26 @@ class ShopViewModel(
 
     fun getAllProducts() {
         viewModelScope.launch {
-            allProductsUiState = AllProductsUiState.Loading
-            allProductsUiState = try {
-                AllProductsUiState.Success(productRepository.getAllProducts())
+            shopUiState = ShopUiState.Loading
+            shopUiState = try {
+                ShopUiState.Success(productRepository.getAllProducts())
             } catch (e: IOException) {
-                AllProductsUiState.Error
+                ShopUiState.Error
             } catch (e: retrofit2.HttpException) {
-                AllProductsUiState.Error
+                ShopUiState.Error
             }
         }
     }
 
     fun getProductById(id: Int) {
         viewModelScope.launch {
-            singleProductUiState = SingleProductUiState.Loading
-            singleProductUiState = try {
-                SingleProductUiState.Success(productRepository.getProductById(id))
+            detailsUiState = DetailsUiState.Loading
+            detailsUiState = try {
+                DetailsUiState.Success(productRepository.getProductById(id))
             } catch (e: IOException) {
-                SingleProductUiState.Error
+                DetailsUiState.Error
             } catch (e: retrofit2.HttpException) {
-                SingleProductUiState.Error
+                DetailsUiState.Error
             }
         }
     }
