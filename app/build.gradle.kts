@@ -4,6 +4,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
 }
 
 android {
@@ -71,10 +72,10 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     //Navigation
-    implementation("androidx.navigation:navigation-compose:2.7.4")
+    implementation("androidx.navigation:navigation-compose:2.7.5")
 
     //Material
-    implementation("androidx.compose.material:material:1.5.3")
+    implementation("androidx.compose.material:material:1.5.4")
 
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -90,7 +91,7 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 
     //Room
-    val roomVersion = "2.5.2"
+    val roomVersion = "2.6.0"
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
@@ -98,6 +99,6 @@ dependencies {
     //Dagger - hilt
     implementation("com.google.dagger:hilt-android:2.48.1")
     kapt("com.google.dagger:hilt-compiler:2.48.1")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
     kapt("com.google.dagger:dagger-compiler:2.48.1")
 }

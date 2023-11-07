@@ -99,7 +99,7 @@ fun EshopaTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
+            window.statusBarColor = colorScheme.background.toArgb()
             if(!darkTheme) {
                 WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
             }
