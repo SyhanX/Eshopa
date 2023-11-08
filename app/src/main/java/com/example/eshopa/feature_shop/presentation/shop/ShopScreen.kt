@@ -13,8 +13,6 @@ import androidx.navigation.NavHostController
 import com.example.eshopa.common.data.NavHostDestinations
 import com.example.eshopa.common.presentation.ErrorScreen
 import com.example.eshopa.common.presentation.LoadingScreen
-import com.example.eshopa.feature_cart.domain.model.CartItem
-import com.example.eshopa.feature_cart.presentation.cart.CartViewModel
 import com.example.eshopa.feature_shop.domain.model.Product
 import com.example.eshopa.feature_shop.domain.util.ShopUiState
 import com.example.eshopa.feature_shop.presentation.components.ProductCard
@@ -22,7 +20,6 @@ import com.example.eshopa.feature_shop.presentation.components.ProductCard
 @Composable
 fun ShopScreen(
     shopViewModel: ShopViewModel,
-    cartViewModel: CartViewModel,
     navController: NavHostController,
     shopUiState: ShopUiState,
     retryAction: () -> Unit,
@@ -32,7 +29,6 @@ fun ShopScreen(
         is ShopUiState.Error -> ErrorScreen(retryAction)
         is ShopUiState.Success -> ShopContent(
             shopViewModel = shopViewModel,
-            cartViewModel = cartViewModel,
             navController = navController,
             shopUiState.products
         )
@@ -42,7 +38,6 @@ fun ShopScreen(
 @Composable
 fun ShopContent(
     shopViewModel: ShopViewModel,
-    cartViewModel: CartViewModel,
     navController: NavHostController,
     products: List<Product>,
 ) {
@@ -59,13 +54,11 @@ fun ShopContent(
             key = { product: Product -> product.id }
         ) { gridItem ->
 
-            val cartProduct = CartItem(gridItem.id)
-
             ProductCard(
                 product = gridItem,
                 isInCart = false,
                 onButtonClick = {
-                    cartViewModel.addProductToCart(cartProduct)
+
                 }) {
                 navController.navigate(NavHostDestinations.ProductPageScreen.route)
                 shopViewModel.getProductById(gridItem.id)

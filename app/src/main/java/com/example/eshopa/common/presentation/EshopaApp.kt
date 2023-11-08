@@ -59,7 +59,6 @@ fun EshopaApp() {
         AppNavHost(
             navController = navController,
             shopViewModel = shopViewModel,
-            cartViewModel = cartViewModel,
             paddingValues = scaffoldPadding
         )
     }

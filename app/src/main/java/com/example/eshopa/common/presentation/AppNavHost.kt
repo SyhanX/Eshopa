@@ -9,7 +9,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.eshopa.common.data.NavHostDestinations
 import com.example.eshopa.feature_cart.presentation.cart.CartScreen
-import com.example.eshopa.feature_cart.presentation.cart.CartViewModel
 import com.example.eshopa.feature_cart.presentation.purchase_screen.PurchaseScreen
 import com.example.eshopa.feature_shop.presentation.product_details.DetailsScreen
 import com.example.eshopa.feature_shop.presentation.shop.ShopScreen
@@ -20,7 +19,6 @@ import com.example.eshopa.feature_support.presentation.CustomerSupportScreen
 fun AppNavHost(
     navController: NavHostController,
     shopViewModel: ShopViewModel,
-    cartViewModel: CartViewModel,
     paddingValues: PaddingValues
 ) {
     NavHost(
@@ -31,7 +29,6 @@ fun AppNavHost(
         composable(route = NavHostDestinations.ShopScreen.route) {
             ShopScreen(
                 shopViewModel = shopViewModel,
-                cartViewModel = cartViewModel,
                 navController = navController,
                 shopUiState = shopViewModel.shopUiState,
                 retryAction = shopViewModel::getAllProducts,
