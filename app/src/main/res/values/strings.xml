@@ -23,4 +23,6 @@
     <string name="description">Description</string>
     <string name="product_info">Product info</string>
     <string name="in_cart">In cart</string>
+    <string name="support">Support</string>
+    <string name="customer_support">Customer support</string>
 </resources>
