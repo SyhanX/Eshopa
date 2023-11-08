@@ -40,10 +40,10 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.eshopa.R
-import com.example.eshopa.common.data.DetailsUiState
 import com.example.eshopa.common.presentation.ErrorScreen
 import com.example.eshopa.common.presentation.LoadingScreen
 import com.example.eshopa.feature_shop.domain.model.Product
+import com.example.eshopa.feature_shop.domain.util.DetailsUiState
 import kotlinx.coroutines.launch
 
 @Composable

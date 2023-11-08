@@ -8,7 +8,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun CartScreen() {
+fun CartScreen(
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -20,6 +21,7 @@ fun CartScreen() {
 }
 
 @Composable
-fun CartContent() {
+fun CartContent(
+) {
 
 }
