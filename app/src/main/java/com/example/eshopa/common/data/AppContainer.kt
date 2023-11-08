@@ -2,8 +2,8 @@ package com.example.eshopa.common.data
 
 import android.content.Context
 import com.example.eshopa.common.data.datasource.MainDatabase
-import com.example.eshopa.feature_cart.data.repository.CartItemRepository
-import com.example.eshopa.feature_cart.domain.repository.CartItemRepositoryImpl
+import com.example.eshopa.feature_cart.domain.repository.CartItemRepository
+import com.example.eshopa.feature_cart.data.repository.CartItemRepositoryImpl
 import com.example.eshopa.feature_shop.data.datasource.ProductApi
 import com.example.eshopa.feature_shop.data.repository.ProductRepository
 import com.example.eshopa.feature_shop.domain.repository.ProductRepositoryImpl

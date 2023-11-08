@@ -23,7 +23,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.eshopa.R
-import com.example.eshopa.common.presentation.util.NavHostDestinations
+import com.example.eshopa.common.data.NavHostDestinations
+import com.example.eshopa.common.domain.model.BottomBarDestination
 import com.example.eshopa.feature_cart.presentation.cart.CartViewModel
 import com.example.eshopa.feature_shop.presentation.shop.ShopViewModel
 
@@ -38,8 +39,8 @@ fun EshopaApp() {
     val currentRoute = navBackStackEntry?.destination?.route
     val topBarTitle = when (currentRoute) {
         "shop" -> stringResource(R.string.shop)
-        "wishlist" -> stringResource(R.string.wishlist)
         "cart" -> stringResource(R.string.cart)
+        "support" -> stringResource(R.string.customer_support)
         "page" -> stringResource(R.string.view_product)
         "purchase" -> stringResource(R.string.purchase_product)
         else -> stringResource(R.string.app_name)
@@ -54,12 +55,12 @@ fun EshopaApp() {
         bottomBar = {
             BottomNavBar(navController, navBackStackEntry)
         }
-    ) { innerPadding ->
+    ) { scaffoldPadding ->
         AppNavHost(
             navController = navController,
             shopViewModel = shopViewModel,
             cartViewModel = cartViewModel,
-            paddingValues = innerPadding
+            paddingValues = scaffoldPadding
         )
     }
 }
@@ -84,34 +85,51 @@ fun MainTopBar(
     )
 }
 
-/*TODO: remove the bottom bar */
 @Composable
 fun BottomNavBar(
     navHostController: NavHostController,
     navBackStackEntry: NavBackStackEntry?
 ) {
-    val bottomNavDestinations = listOf(
-        NavHostDestinations.ShopScreen,
-        NavHostDestinations.WishlistScreen,
-        NavHostDestinations.CartScreen
-    )
+    val bottomBarDestinations = listOf(
+        BottomBarDestination(
+            route = NavHostDestinations.ShopScreen.route,
+            name = R.string.shop,
+            unselectedIcon = R.drawable.ic_bag_outlined,
+            selectedIcon = R.drawable.ic_bag_rounded
+        ),
+        BottomBarDestination(
+            route = NavHostDestinations.CartScreen.route,
+            name = R.string.cart,
+            unselectedIcon = R.drawable.ic_cart_outlined,
+            selectedIcon = R.drawable.ic_cart_rounded
+        ),
+        BottomBarDestination(
+            route = NavHostDestinations.CustomerSupportScreen.route,
+            name = R.string.support,
+            unselectedIcon = R.drawable.ic_support_outlined,
+            selectedIcon = R.drawable.ic_support_rounded
+        )
 
+    )
     NavigationBar {
         val currentDestination = navBackStackEntry?.destination
-
-        bottomNavDestinations.forEach { screen ->
+        bottomBarDestinations.forEach { destination ->
+            val isSelected =
+                currentDestination?.hierarchy?.any { it.route == destination.route } == true
             NavigationBarItem(
                 icon = {
                     Icon(
-                        painterResource(screen.icon),
+                        painterResource(
+                            if (isSelected) destination.selectedIcon else destination.unselectedIcon
+                        ),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary
                     )
                 },
-                label = { Text(stringResource(screen.name)) },
-                selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                label = { Text(stringResource(destination.name)) },
+                selected = isSelected,
                 onClick = {
-                    navHostController.navigate(screen.route) {
+                    navHostController.navigate(destination.route) {
                         launchSingleTop = true
                         restoreState = true
                         popUpTo(navHostController.graph.findStartDestination().id) {

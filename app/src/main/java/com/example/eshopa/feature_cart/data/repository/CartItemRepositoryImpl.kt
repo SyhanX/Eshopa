@@ -1,7 +1,7 @@
-package com.example.eshopa.feature_cart.domain.repository
+package com.example.eshopa.feature_cart.data.repository
 
 import com.example.eshopa.feature_cart.data.datasource.CartItemDao
-import com.example.eshopa.feature_cart.data.repository.CartItemRepository
+import com.example.eshopa.feature_cart.domain.repository.CartItemRepository
 import com.example.eshopa.feature_cart.domain.model.CartItem
 import kotlinx.coroutines.flow.Flow
 

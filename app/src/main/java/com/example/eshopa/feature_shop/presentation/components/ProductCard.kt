@@ -53,7 +53,7 @@ fun ProductCard(
         textId = R.string.in_cart
         buttonColor = MaterialTheme.colorScheme.primary
     } else {
-        iconId = R.drawable.ic_cart
+        iconId = R.drawable.ic_cart_outlined
         textId = R.string.add_to_cart
         buttonColor = MaterialTheme.colorScheme.onPrimary
     }

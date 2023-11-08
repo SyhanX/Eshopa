@@ -5,9 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.eshopa.common.data.ShopUiState
-import com.example.eshopa.common.data.DetailsUiState
 import com.example.eshopa.feature_shop.data.repository.ProductRepository
+import com.example.eshopa.feature_shop.domain.util.DetailsUiState
+import com.example.eshopa.feature_shop.domain.util.ShopUiState
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -24,7 +24,6 @@ class ShopViewModel(
     init {
         getAllProducts()
     }
-
 
     fun getAllProducts() {
         viewModelScope.launch {

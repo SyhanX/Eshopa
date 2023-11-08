@@ -10,13 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.eshopa.common.data.ShopUiState
+import com.example.eshopa.common.data.NavHostDestinations
 import com.example.eshopa.common.presentation.ErrorScreen
 import com.example.eshopa.common.presentation.LoadingScreen
-import com.example.eshopa.common.presentation.util.NavHostDestinations
 import com.example.eshopa.feature_cart.domain.model.CartItem
 import com.example.eshopa.feature_cart.presentation.cart.CartViewModel
 import com.example.eshopa.feature_shop.domain.model.Product
+import com.example.eshopa.feature_shop.domain.util.ShopUiState
 import com.example.eshopa.feature_shop.presentation.components.ProductCard
 
 @Composable
@@ -47,7 +47,7 @@ fun ShopContent(
     products: List<Product>,
 ) {
     LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
+        columns = GridCells.Adaptive(160.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier
@@ -65,7 +65,7 @@ fun ShopContent(
                 product = gridItem,
                 isInCart = false,
                 onButtonClick = {
-                    cartViewModel.addItem(cartProduct)
+                    cartViewModel.addProductToCart(cartProduct)
                 }) {
                 navController.navigate(NavHostDestinations.ProductPageScreen.route)
                 shopViewModel.getProductById(gridItem.id)
