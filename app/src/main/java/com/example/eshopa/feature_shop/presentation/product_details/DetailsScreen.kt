@@ -122,7 +122,7 @@ fun ProductImageAndTitle(product: Product) {
     ) {
         AsyncImage(
             model = ImageRequest.Builder(context = LocalContext.current)
-                .data(product.image)
+                .data(product.thumbnail) //TODO: change this to normal images
                 .crossfade(true)
                 .build(),
             error = painterResource(R.drawable.ic_refresh),
@@ -174,7 +174,7 @@ private fun Rating(product: Product) {
                 contentDescription = stringResource(R.string.rating)
             )
             Text(
-                text = product.rating.rate.toString(),
+                text = product.rating.toString(),
                 fontWeight = FontWeight.Medium
             )
         }

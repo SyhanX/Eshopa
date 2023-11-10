@@ -1,6 +1,7 @@
 package com.example.eshopa.common.presentation
 
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -11,9 +12,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
@@ -110,7 +113,10 @@ fun BottomNavBar(
         )
 
     )
-    NavigationBar {
+    NavigationBar(
+        modifier = Modifier
+            .height(55.dp)
+    ) {
         val currentDestination = navBackStackEntry?.destination
         bottomBarDestinations.forEach { destination ->
             val isSelected =
@@ -125,7 +131,6 @@ fun BottomNavBar(
                         tint = MaterialTheme.colorScheme.primary
                     )
                 },
-                label = { Text(stringResource(destination.name)) },
                 selected = isSelected,
                 onClick = {
                     navHostController.navigate(destination.route) {

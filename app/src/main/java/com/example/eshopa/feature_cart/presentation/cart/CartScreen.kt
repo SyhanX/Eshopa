@@ -3,9 +3,14 @@ package com.example.eshopa.feature_cart.presentation.cart
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
+import com.example.eshopa.R
 
 @Composable
 fun CartScreen(
@@ -13,15 +18,17 @@ fun CartScreen(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) {
         CartContent()
     }
 }
 
 @Composable
-fun CartContent(
-) {
-
+fun CartContent() {
+    Text(
+        text = stringResource(R.string.cart_empty),
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Medium
+    )
 }

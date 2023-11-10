@@ -14,6 +14,7 @@ import com.example.eshopa.common.data.NavHostDestinations
 import com.example.eshopa.common.presentation.ErrorScreen
 import com.example.eshopa.common.presentation.LoadingScreen
 import com.example.eshopa.feature_shop.domain.model.Product
+import com.example.eshopa.feature_shop.domain.model.Products
 import com.example.eshopa.feature_shop.domain.util.ShopUiState
 import com.example.eshopa.feature_shop.presentation.components.ProductCard
 
@@ -39,7 +40,7 @@ fun ShopScreen(
 fun ShopContent(
     shopViewModel: ShopViewModel,
     navController: NavHostController,
-    products: List<Product>,
+    products: Products,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(160.dp),
@@ -50,16 +51,11 @@ fun ShopContent(
             .padding(start = 8.dp, end = 8.dp)
     ) {
         items(
-            items = products,
+            items = products.products,
             key = { product: Product -> product.id }
         ) { gridItem ->
 
-            ProductCard(
-                product = gridItem,
-                isInCart = false,
-                onButtonClick = {
-
-                }) {
+            ProductCard(product = gridItem) {
                 navController.navigate(NavHostDestinations.ProductPageScreen.route)
                 shopViewModel.getProductById(gridItem.id)
             }

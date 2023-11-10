@@ -18,7 +18,7 @@ interface AppContainer {
 
 class DefaultAppContainer(private val context: Context) : AppContainer {
 
-    private val baseUrl = "https://fakestoreapi.com"
+    private val baseUrl = "https://dummyjson.com"
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
